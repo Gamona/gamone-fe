@@ -1,48 +1,48 @@
 import {FaUser, FaLock} from 'react-icons/fa';
-// import useNavigate from 'react-router-dom';
-// import { useState } from 'react';
-// import axios from 'axios';
+import useNavigate from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 import React from 'react';
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 const LoginFormPengacara = () => {
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const navigate = useNavigate();
+  const [emailPengacara, setEmailPengacara] = useState('');
+  const [passwordPengacara, setPasswordPengacara] = useState('');
+  const navigate = useNavigate();
 
-  // const handleRegisterLinkClick = (e) => {
-  //   e.preventDefault();
-  //   const data = {email, password};
-  //   console.log(data);
-  //   navigate('/');
-  // }
+  const handleRegisterLinkClick = (e) => {
+    e.preventDefault();
+    const data = {emailPengacara, passwordPengacara};
+    console.log(data);
+    navigate('/register/pengacara');
+  }
 
-  // // eslint-disable-next-line no-undef
-  // const URL = process.env.REACT_APP_BE_ENDPOINT
-  // console.log('URL', URL)
+  // eslint-disable-next-line no-undef
+  const URL = process.env.REACT_APP_BE_ENDPOINT
+  console.log('URL', URL)
 
-  // const onLoginSubmit = () => {
-  //   console.log(`email: ${email}, password: ${password}`)
-  //     axios.post(`${URL}/v1/auth/login`, {
-  //       email,
-  //       password
-  //     })
-  //       .then(function (response) {
-  //         console.log('login success', response);
-  //           if (response && response.data && response.data.tokens && response.data.tokens.access) {
-  //             localStorage.setItem('token', JSON.stringify(response.data.tokens.access.token))
-  //             localStorage.setItem('user', JSON.stringify(response.data.user))
-  //             navigate('/homepage')
-  //           }
-  //       })
-  //         .catch(function (error) {
-  //           console.error('Login error', error.message);
-  //            window.alert('error', 'Login Failed', `<b>[CODE] ${error.code}</b><br>Please check your username and password`);
-  //           }
-  //       );
-  // }
+  const onLoginSubmit = () => {
+    console.log(`email: ${emailPengacara}, password: ${passwordPengacara}`)
+      axios.post(`${URL}/v1/auth/login`, {
+        emailPengacara,
+        passwordPengacara
+      })
+        .then(function (response) {
+          console.log('login success', response);
+            if (response && response.data && response.data.tokens && response.data.tokens.access) {
+              localStorage.setItem('token', JSON.stringify(response.data.tokens.access.token))
+              localStorage.setItem('user', JSON.stringify(response.data.user))
+              navigate('/homepage/pengacara')
+            }
+        })
+          .catch(function (error) {
+            console.error('Login error', error.message);
+             window.alert('error', 'Login Failed', `<b>[CODE] ${error.code}</b><br>Please check your username and password`);
+            }
+        );
+  }
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -55,12 +55,12 @@ const LoginFormPengacara = () => {
             <form className="space-y-4 md:space-y-6" action="">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Write your email here' required=""/>
+                <input onChange={(e) => setEmailPengacara(e.target.value)} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Write your email here' required=""/>
               </div>
 
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder='Write your password here'/>
+                <input onChange={(e) => setPasswordPengacara(e.target.value)} type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" placeholder='Write your password here'/>
               </div>
 
               <div className="flex items-center justify-between">
@@ -75,9 +75,9 @@ const LoginFormPengacara = () => {
                 <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
               </div>
 
-              <button type="submit" className="w-full text-black bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign In</button>
+              <button onClick={() => onLoginSubmit()} type="submit" className="w-full text-black bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign In</button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Dont have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500"> Create New Account </a>
+                  Dont have an account? <a href="#" onClick={handleRegisterLinkClick} className="font-medium text-primary-600 hover:underline dark:text-primary-500"> Create New Account </a>
               </p>
             </form>    
           </div>
