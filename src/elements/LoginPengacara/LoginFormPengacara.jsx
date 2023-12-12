@@ -1,5 +1,5 @@
 import {FaUser, FaLock} from 'react-icons/fa';
-import useNavigate from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
@@ -20,7 +20,7 @@ const LoginFormPengacara = () => {
   }
 
   // eslint-disable-next-line no-undef
-  const URL = process.env.REACT_APP_BE_ENDPOINT
+  const URL = import.meta.env.VITE_BE_ENDPOINT
   console.log('URL', URL)
 
   const onLoginSubmit = () => {
