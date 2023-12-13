@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import RegisterPengacara from './pages/RegisterPengacara'
 import LoginPengacara from './pages/LoginPengacara'
+import Chats from './pages/Chats'
 
 const App = () => {
 
@@ -23,7 +24,11 @@ const App = () => {
     {
       path: '/login/pengacara',
       element: <LoginPengacara />
-    }
+    },
+    {
+      path: '/chats',
+      element: <Chats />
+    },
   ])
   return (
     <RouterProvider router={router} />
