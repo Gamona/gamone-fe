@@ -1,5 +1,5 @@
 import {FaUser, FaLock} from 'react-icons/fa';
-import useNavigate from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
