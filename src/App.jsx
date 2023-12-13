@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import RegisterPengacara from './pages/RegisterPengacara'
 import LoginPengacara from './pages/LoginPengacara'
+import Homepage from './pages/Homepage'
 
 const App = () => {
 
@@ -23,6 +24,10 @@ const App = () => {
     {
       path: '/login/pengacara',
       element: <LoginPengacara />
+    },
+    {
+      path: '/homepage',
+      element: <Homepage />
     }
   ])
   return (

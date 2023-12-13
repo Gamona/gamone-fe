@@ -63,20 +63,23 @@ export default function Navbar() {
                                 <Link to='/'>Home</Link>
                             </li>
                             <li className="text-white hover:text-indigo-200">
-                                <Link to='/pengacara'>Blog</Link>
+                                <Link to='/pengacara'>Konsultasi</Link>
+                            </li>
+                            <li className="text-white hover:text-indigo-200">
+                                <Link to='/pengacara'>Go Premium</Link>
                             </li>
                         </ul>
 
                         <div className="mt-3 space-y-2 md:hidden">
                             <button className="border-[#E7D49E] border w-full text-[#fff] text-lg px-6 py-2 rounded-[10px]">
-                                My Profile
+                                Sign Out
                             </button>
                         </div>
                     </div>
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
                     <button className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
-                        My Profile
+                        Sign Out
                     </button>
                 </div>
             </div>
