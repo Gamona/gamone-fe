@@ -5,7 +5,7 @@ import { chatDate, chatTime, createUUID } from '../util';
 
 let userId = '821197'
 let lawyerId = '3310111999'
-const Chats = () => {
+const ChatsLawyer = () => {
   const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(true);
   const [chats, setChats] = useState([]);
@@ -13,7 +13,7 @@ const Chats = () => {
 
   useEffect(() => {
     if(mounted) {
-      const chatIds = `${userId}_${lawyerId}`;
+      const chatIds = `${userId}_${lawyerId}`;   
       const urlChatting = `chatting/${chatIds}/allChat`;
       const refChatting = ref(DB, urlChatting);
 
@@ -63,7 +63,7 @@ const Chats = () => {
     const refChatting = ref(DB, urlChatting);
 
     const data = {
-      sendBy: userId,
+      sendBy: lawyerId,
       chatDate: today.getTime(),
       chatTime: chatTime(today),
       chatContent: chatContent,
@@ -127,4 +127,4 @@ const Chats = () => {
   )
 }
 
-export default Chats
+export default ChatsLawyer
