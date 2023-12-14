@@ -15,7 +15,7 @@ const RegisterFormPengacara = () => {
   const [addressPengacara, setAddressPengacara] = useState('');
   const [pendidikanPengacara, setPendidikanPengacara] = useState(''); // eslint-disable-line no-unused-vars
   const [ktpPengacara, setKtpPengacara] = useState(''); // eslint-disable-line no-unused-vars
-  const [specialization, setSpecialization] = useState('')
+  const [specialize, setSpecialize] = useState('')
   const [description, setDescription] = useState('')
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const RegisterFormPengacara = () => {
     formData.append('name', namaPengacara)
     formData.append('address', addressPengacara)
     formData.append('education', pendidikanPengacara)
-    formData.append('specialize', specialization)
+    formData.append('specialize', specialize)
     formData.append('description', description)
     formData.append('email', emailPengacara)
     formData.append('password', passwordPengacara)
@@ -131,7 +131,7 @@ const RegisterFormPengacara = () => {
 
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Specialization</label>
-                  <input onChange={(e) => setSpecialization(e.target.value)} type="text" name="specialization" id="specialization" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your speciality' required=""/>
+                  <input onChange={(e) => setSpecialize(e.target.value)} type="text" name="specialization" id="specialization" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your speciality' required=""/>
                 </div>
                 
                 <div>
