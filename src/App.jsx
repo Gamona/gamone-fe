@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import RegisterPengacara from './pages/RegisterPengacara'
 import LoginPengacara from './pages/LoginPengacara'
 import Chats from './pages/Chats'
+import ChatsLawyer from './pages/ChatLawyer'
 
 const App = () => {
 
@@ -29,6 +30,10 @@ const App = () => {
       path: '/chats',
       element: <Chats />
     },
+    {
+      path: '/chatsLawyer',
+      element: <ChatsLawyer />
+    },    
   ])
   return (
     <RouterProvider router={router} />
