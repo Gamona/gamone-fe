@@ -36,7 +36,7 @@ const RegisterFormPengacara = () => {
     formData.append('name', namaPengacara)
     formData.append('address', addressPengacara)
     formData.append('education', pendidikanPengacara)
-    specialization.forEach(spec => formData.append('specialize[]', spec))
+    formData.append('specialize', specialization.join())
     formData.append('description', description)
     formData.append('email', emailPengacara)
     formData.append('password', passwordPengacara)
@@ -164,7 +164,7 @@ const RegisterFormPengacara = () => {
                         {spec}
                         <span className="ml-2 cursor-pointer" onClick={() => removeSpecialization(spec)}>
                           <svg width="20" height="20" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" className="text-gray-900 dark:text-white">
-                              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m7.5 7.5l6 6m0-6l-6 6"/>
+                              <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m7.5 7.5l6 6m0-6l-6 6"/>
                           </svg>
                         </span>
                       </span>
