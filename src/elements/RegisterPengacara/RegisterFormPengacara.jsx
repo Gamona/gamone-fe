@@ -1,5 +1,5 @@
 import {useNavigate} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import React from 'react';
 import { Spin, message } from 'antd'
@@ -15,7 +15,7 @@ const RegisterFormPengacara = () => {
   const [addressPengacara, setAddressPengacara] = useState('');
   const [pendidikanPengacara, setPendidikanPengacara] = useState(''); // eslint-disable-line no-unused-vars
   const [ktpPengacara, setKtpPengacara] = useState(''); // eslint-disable-line no-unused-vars
-  const [specialize, setSpecialize] = useState('')
+  const [specialization, setSpecialization] = useState([]);
   const [description, setDescription] = useState('')
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const RegisterFormPengacara = () => {
     formData.append('name', namaPengacara)
     formData.append('address', addressPengacara)
     formData.append('education', pendidikanPengacara)
-    formData.append('specialize', specialize)
+    specialization.forEach(spec => formData.append('specialize[]', spec))
     formData.append('description', description)
     formData.append('email', emailPengacara)
     formData.append('password', passwordPengacara)
@@ -87,6 +87,22 @@ const RegisterFormPengacara = () => {
     setToken(tokenFromLS)
   }, [])
 
+  const selectSpecialization = useRef()
+
+  const addSpecialization = val => {
+    setSpecialization(prev => {
+      const specs = [...prev];
+      specs.push(val)
+      return [...new Set(specs)]
+    })
+
+    selectSpecialization.current.value = '-'
+  }
+
+  const removeSpecialization = val => {
+    setSpecialization(prev => prev.filter(spec => spec != val))
+  }
+
 
   return (
     <>
@@ -131,7 +147,29 @@ const RegisterFormPengacara = () => {
 
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Specialization</label>
-                  <input onChange={(e) => setSpecialize(e.target.value)} type="text" name="specialization" id="specialization" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your speciality' required=""/>
+                  <select ref={selectSpecialization} onChange={(e) => addSpecialization(e.target.value)} type="text" name="specialization" id="specialization" className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your speciality'>
+                    <option disabled selected value="-">Select Your Specialization</option>
+                    <option value="Kepailitan">Kepailitan</option>
+                    <option value="Korporasi">Korporasi</option>
+                    <option value="Kekayaan Intelektual">Kekayaan Intelektual</option>
+                    <option value="Ketenagakerjaan">Ketenagakerjaan</option>
+                    <option value="Konstitusi">Konstitusi</option>
+                    <option value="Keluarga">Keluarga</option>
+                    <option value="Pajak">Pajak</option>
+                    <option value="Pembela Kriminal">Pembela Kriminal</option>
+                  </select>
+                  <div className="min-h-[40px] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 flex flex-wrap gap-2">
+                    {specialization.map(spec => (
+                      <span key={spec} className="flex items-center p-1 text-gray-900 dark:text-white bg-gray-300 dark:bg-gray-600 rounded">
+                        {spec}
+                        <span className="ml-2 cursor-pointer" onClick={() => removeSpecialization(spec)}>
+                          <svg width="20" height="20" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" className="text-gray-900 dark:text-white">
+                              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m7.5 7.5l6 6m0-6l-6 6"/>
+                          </svg>
+                        </span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 
                 <div>
