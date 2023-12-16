@@ -1,10 +1,10 @@
 import {FaUser, FaLock} from 'react-icons/fa';
 import {useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
 import { Spin, message } from 'antd'
 import React from 'react';
-// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 const LoginFormPengacara = () => {
@@ -14,6 +14,7 @@ const LoginFormPengacara = () => {
   const [emailPengacara, setEmailPengacara] = useState('');
   const [passwordPengacara, setPasswordPengacara] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegisterLinkClick = (e) => {
     e.preventDefault();
@@ -43,10 +44,16 @@ const LoginFormPengacara = () => {
       if(response.data.responseCode === 200) {
         setLoading(false)
         localStorage.setItem("token", JSON.stringify(response.data.tokens.access.token))
+        dispatch({type: 'ADD_TOKEN', value: response.data.tokens })
         messageApi.open({
           type: 'success',
           content: 'Login Success',
         })
+
+        setTimeout(() => {
+          navigate('/')
+
+        }, '2000');
       }
       
     } catch (error) {
