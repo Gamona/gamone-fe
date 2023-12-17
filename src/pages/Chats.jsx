@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DB } from '../config';
 import { getDatabase, ref, set, onValue, push, child, get, update  } from "firebase/database";
+import {useNavigate} from 'react-router-dom';
 import { chatDate, chatTime, createUUID } from '../util';
 
 let userId = '821197'
@@ -10,6 +11,7 @@ const Chats = () => {
   const [mounted, setMounted] = useState(true);
   const [chats, setChats] = useState([]);
   const [chatContent, setChatContent] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(mounted) {
@@ -20,33 +22,46 @@ const Chats = () => {
       onValue(refChatting, (snapshot) => {
         const data = snapshot.val();
 
-        const dataSnapshot = data;
-        const AllDataChat = [];
+        if(data !== null) {
+          const dataSnapshot = data;
+          const AllDataChat = [];
 
-        Object.keys(dataSnapshot).map(item => {
-          const dataChat = dataSnapshot[item];
-          const newDataChat = [];
+          Object.keys(dataSnapshot).map(item => {
+            const dataChat = dataSnapshot[item];
 
-          Object.keys(dataChat).map(key => {
-            newDataChat.push({
-              id: key,
-              data: dataChat[key],
+            const newDataChat = [];
+
+            Object.keys(dataChat).map(key => {
+              newDataChat.push({
+                id: key,
+                data: dataChat[key],
+              });
+            });
+            AllDataChat.push({
+              date: item,
+              data: newDataChat,
             });
           });
-          AllDataChat.push({
-            date: item,
-            data: newDataChat,
-          });
-        });
 
-        setChats(AllDataChat);
-        setMounted(false);
+          setChats(AllDataChat);
+          setMounted(false);
 
+        } 
       });
       console.log(chats)
     }
 
-  }, [])
+  }, [chats, mounted])
+
+  const toMessages = (e) => {
+    e.preventDefault();
+    navigate('/messages');
+  }
+
+  const toLawyer = (e) => {
+    e.preventDefault();
+    navigate('/messages/pengacara');
+  }
 
   const sendChat = async (e) => {
     e.preventDefault()
@@ -73,12 +88,14 @@ const Chats = () => {
       lastContentChat: chatContent,
       lastChatDate: today.getTime(),
       uidPartner: lawyerId,
+      uidSender: userId,
     };
 
     const dataHistoryChatLawyer = {
       lastContentChat: chatContent,
       lastChatDate: today.getTime(),
       uidPartner: userId,
+      uidSender: lawyerId,
     };
 
     try {
@@ -106,7 +123,7 @@ const Chats = () => {
       <div>
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
         <div>
-        {chats.map(cur => {
+        {chats.length > 0 && chats.map(cur => {
             return (
               <div key={cur.date}>
                 <h2>{cur.date}</h2>
@@ -121,6 +138,8 @@ const Chats = () => {
         </div>
         <input onChange={(e) => setChatContent(e.target.value)} type="text" name="chat" id="chat" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Write your problem here' required=""/>
         <button onClick={(e) => sendChat(e)} className="w-full text-black bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send</button>
+        <button onClick={(e) => toMessages(e)} className="w-full text-black bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Messages</button>
+        <button onClick={(e) => toLawyer(e)} className="w-full text-black bg-yellow-100 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Chat pengacara</button>
       </div>
     </>
 

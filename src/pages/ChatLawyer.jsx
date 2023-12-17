@@ -46,7 +46,7 @@ const ChatsLawyer = () => {
       console.log(chats)
     }
 
-  }, [])
+  }, [chats, mounted])
 
   const sendChat = async (e) => {
     e.preventDefault()
@@ -73,12 +73,14 @@ const ChatsLawyer = () => {
       lastContentChat: chatContent,
       lastChatDate: today.getTime(),
       uidPartner: lawyerId,
+      uidSender: userId,
     };
 
     const dataHistoryChatLawyer = {
       lastContentChat: chatContent,
       lastChatDate: today.getTime(),
       uidPartner: userId,
+      uidSender: lawyerId,
     };
 
     try {
