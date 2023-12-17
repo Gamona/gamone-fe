@@ -5,8 +5,7 @@ import Homepage from '../pages/Homepage';
 import Chats from '../pages/Chats';
 import RegisterPengacara from '../pages/RegisterPengacara';
 import LoginPengacara from '../pages/LoginPengacara';
-import Messages from '../pages/Messages';
-import ChatsLawyer from '../pages/ChatLawyer';
+import Pengacara from '../pages/Pengacara';
 
 export const PublicRoutes = () => {
   return (
@@ -16,6 +15,7 @@ export const PublicRoutes = () => {
           <Route path='register' element={<Register />} />
           <Route path='login/pengacara' element={<LoginPengacara />} />
           <Route path='register/pengacara' element={<RegisterPengacara />} />
+          <Route path='pengacara' element={<Pengacara />} />
           <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
   );
@@ -25,8 +25,6 @@ export const PrivateRoutes = () => {
   return (
       <Routes>
           <Route path='/' element={<Chats />} />
-          <Route path='messages' element={<Messages />} />
-          <Route path='messages/pengacara' element={<ChatsLawyer />} />
           <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
   );
