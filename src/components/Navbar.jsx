@@ -1,17 +1,31 @@
 import { useState } from "react";
 import Logo from '../assets/logo.png'
 import { Link, useNavigate } from "react-router-dom";
-
+import { Button, Popover } from 'antd';
 
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
-    const loginPage = (e) => {
+    const loginUserPage = (e) => {
         e.preventDefault()
-        navigate('/login/pengacara')
+        navigate('/login')
     }
+
+    const loginLawyerPage = (e) => {
+      e.preventDefault()
+      navigate('/login/pengacara')
+  }
+
+    const hide = () => {
+      setOpen(false);
+    };
+    
+    const handleOpenChange = (newOpen) => {
+      setOpen(newOpen);
+    };
 
 
     return (
@@ -86,9 +100,24 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
-                    <button onClick={(e) => loginPage(e)} className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
-                        Sign In
-                    </button>
+ 
+                    <Popover
+                      content={
+                        <>
+                          <Button type="link" onClick={(e) => loginUserPage(e)}>Member</Button>
+                          <Button type="link" onClick={(e) => loginLawyerPage(e)}>Lawyer</Button>
+                        </>
+
+                      }
+                      title="Sign In As"
+                      trigger="click"
+                      open={open}
+                      onOpenChange={handleOpenChange}
+                    >
+                      <button className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
+                          Sign In
+                      </button>
+                    </Popover>
                 </div>
             </div>
         </nav>

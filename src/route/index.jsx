@@ -6,6 +6,7 @@ import Chats from '../pages/Chats';
 import RegisterPengacara from '../pages/RegisterPengacara';
 import LoginPengacara from '../pages/LoginPengacara';
 import Pengacara from '../pages/Pengacara';
+import ChatsLawyer from '../pages/ChatLawyer';
 
 export const PublicRoutes = () => {
   return (
@@ -24,7 +25,8 @@ export const PublicRoutes = () => {
 export const PrivateRoutes = () => {
   return (
       <Routes>
-          <Route path='/' element={<Chats />} />
+          <Route path='/chats' element={<Chats />} />
+          <Route path='/chats/lawyer' element={<ChatsLawyer />} />
           <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
   );
