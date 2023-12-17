@@ -1,11 +1,17 @@
 import { useState } from "react";
 import Logo from '../assets/logo.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);
+    const navigate = useNavigate();
 
+    const loginPage = (e) => {
+        e.preventDefault()
+        navigate('/login/pengacara')
+    }
 
 
     return (
@@ -80,8 +86,8 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
-                    <button className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
-                        Sign Out
+                    <button onClick={(e) => loginPage(e)} className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
+                        Sign In
                     </button>
                 </div>
             </div>
