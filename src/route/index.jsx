@@ -5,6 +5,7 @@ import Homepage from '../pages/Homepage';
 import Chats from '../pages/Chats';
 import RegisterPengacara from '../pages/RegisterPengacara';
 import LoginPengacara from '../pages/LoginPengacara';
+import Pengacara from '../pages/Pengacara';
 
 export const PublicRoutes = () => {
   return (
@@ -14,6 +15,7 @@ export const PublicRoutes = () => {
           <Route path='register' element={<Register />} />
           <Route path='login/pengacara' element={<LoginPengacara />} />
           <Route path='register/pengacara' element={<RegisterPengacara />} />
+          <Route path='pengacara' element={<Pengacara />} />
           <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
   );

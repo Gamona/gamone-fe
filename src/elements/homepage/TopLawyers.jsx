@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import CardLawyers from '../../components/CardLawyers';
 import Lawyers1 from '../../assets/images/lawyers.png';
@@ -59,36 +60,53 @@ const TopLawyers = () => {
           ref={sliderRef}
           {...settings}
           className="w-full flex items-center px-[60px] md:px-0">
-          <CardLawyers
-            name="Alexa Rachel"
-            image={Lawyers1}
-            hukum="Hukum Pidana"
-          />
-          <CardLawyers
-            name="Liu Yue Tian Park"
-            image={Lawyers2}
-            hukum="Hukum Bisnis"
-          />
-          <CardLawyers
-            name="Nairobi Putri Hayza"
-            image={Lawyers3}
-            hukum="Hukum Kontrak"
-          />
-          <CardLawyers
-            name="James Rivillia"
-            image={Lawyers4}
-            hukum="Hukum Properti"
-          />
-          <CardLawyers
-            name="John McParker Steve"
-            image={Lawyers5}
-            hukum="Hukum Bisnis"
-          />
-          <CardLawyers
-            name="Alexander Jannie"
-            image={Lawyers6}
-            hukum="Hukum Kontrak"
-          />
+          <Link to='/pengacara'>
+            <CardLawyers
+              name="Alexa Rachel"
+              image={Lawyers1}
+              hukum="Hukum Pidana"
+            />
+          </Link>
+
+          <Link to='/pengacara'>
+            <CardLawyers
+              name="Liu Yue Tian Park"
+              image={Lawyers2}
+              hukum="Hukum Bisnis"
+            />
+          </Link>
+
+          <Link to='/pengacara'>
+            <CardLawyers
+              name="Nairobi Putri Hayza"
+              image={Lawyers3}
+              hukum="Hukum Kontrak"
+            />
+          </Link>
+
+          <Link to='/pengacara'>
+            <CardLawyers
+              name="James Rivillia"
+              image={Lawyers4}
+              hukum="Hukum Properti"
+            />
+          </Link>
+
+          <Link to='/pengacara'>
+            <CardLawyers
+              name="John McParker Steve"
+              image={Lawyers5}
+              hukum="Hukum Bisnis"
+            />
+          </Link>
+
+          <Link to='/pengacara'>
+            <CardLawyers
+              name="Alexander Jannie"
+              image={Lawyers6}
+              hukum="Hukum Kontrak"
+            />
+          </Link>
         </Slider>
         <button
           className="absolute top-1/2 left-4 md:left-0 lg:-left-16 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
