@@ -112,6 +112,39 @@ const Chats = () => {
     <main className="bg-gray-50 dark:bg-gray-900">
       <Navbar />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-5 w-full min-h-screen py-10">
+          <aside className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md p-4 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-4">
+            <a
+              href="javscript:;"
+              className="bg-yellow-400 hover:bg-yellow-500 rounded px-3 py-2 inline-block w-full"
+            >
+              User Chat
+            </a>
+            <a
+              href="javscript:;"
+              className="bg-yellow-400 hover:bg-yellow-500 rounded px-3 py-2 inline-block w-full"
+            >
+              User Chat
+            </a>
+            <a
+              href="javscript:;"
+              className="bg-yellow-400 hover:bg-yellow-500 rounded px-3 py-2 inline-block w-full"
+            >
+              User Chat
+            </a>
+            <a
+              href="javscript:;"
+              className="bg-yellow-400 hover:bg-yellow-500 rounded px-3 py-2 inline-block w-full"
+            >
+              User Chat
+            </a>
+            <a
+              href="javscript:;"
+              className="bg-yellow-400 hover:bg-yellow-500 rounded px-3 py-2 inline-block w-full"
+            >
+              User Chat
+            </a>
+          </aside>
           <section className="flex flex-col w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <header className="flex justify-between gap-4 items-center text-gray-900 dark:text-white p-4 lg:p-6 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3">
@@ -204,6 +237,7 @@ const Chats = () => {
               </div>
             </footer>
           </section>
+        </div>
       </div>
     </main>
   );
