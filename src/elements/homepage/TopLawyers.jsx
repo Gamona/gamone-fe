@@ -53,7 +53,7 @@ const TopLawyers = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 md:px-8 lg:px-0">
       <h1 className="text-center text-2xl lg:text-4xl text-[#112340] font-semibold">
-        Top Rated Lawyers
+        Our Lawyers
       </h1>
       <div className="mt-9 my-24 relative">
         <Slider
