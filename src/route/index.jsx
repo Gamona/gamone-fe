@@ -25,7 +25,7 @@ export const PublicRoutes = () => {
 export const PrivateRoutes = () => {
   return (
       <Routes>
-          <Route path='/chats' element={<Chats />} />
+          <Route path='/' element={<Homepage />} />
           <Route path='/chats/lawyer' element={<ChatsLawyer />} />
           <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
