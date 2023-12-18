@@ -51,7 +51,7 @@ const LoginFormPengacara = () => {
         })
 
         setTimeout(() => {
-          navigate('/')
+          navigate('/',{ replace: true })
 
         }, '2000');
       }
