@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
 import { Spin, message } from 'antd'
+import { storeData } from '../../util'
 import React from 'react';
 
 
@@ -43,8 +44,10 @@ const LoginFormPengacara = () => {
 
       if(response.data.responseCode === 200) {
         setLoading(false)
-        localStorage.setItem("token", JSON.stringify(response.data.tokens.access.token))
+        storeData('token', JSON.stringify(response.data.tokens.access.token) )
+        storeData('profile', response.data.data )
         dispatch({type: 'ADD_TOKEN', value: response.data.tokens })
+        dispatch({type: 'ADD_PROFILE', value: response.data.tokens })
         messageApi.open({
           type: 'success',
           content: 'Login Success',

@@ -1,13 +1,19 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../assets/logo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Popover } from 'antd';
+import { clearData } from "../util";
 
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);
     const [open, setOpen] = useState(false);
+
     const navigate = useNavigate();
+    const profiles = useSelector(state => state.profileReducer.profile);
+    const dispatch = useDispatch();
+
 
     const loginUserPage = (e) => {
         e.preventDefault()
@@ -17,7 +23,16 @@ export default function Navbar() {
     const loginLawyerPage = (e) => {
       e.preventDefault()
       navigate('/login/pengacara')
-  }
+    }
+
+    const logoutUserPage = (e) => {
+        e.preventDefault()
+        clearData()
+        dispatch({type: 'CLEAR_TOKEN'})
+        dispatch({type: 'CLEAR_PROFILE'})
+        
+        navigate(0)
+      }
 
     const hide = () => {
       setOpen(false);
@@ -101,6 +116,11 @@ export default function Navbar() {
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
  
+                {profiles.isLogin ? 
+                    <button onClick={(e) => logoutUserPage(e)} className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
+                        Sign Out
+                    </button> 
+                    : 
                     <Popover
                       content={
                         <>
@@ -114,10 +134,12 @@ export default function Navbar() {
                       open={open}
                       onOpenChange={handleOpenChange}
                     >
+                    
                       <button className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
                           Sign In
                       </button>
                     </Popover>
+                }
                 </div>
             </div>
         </nav>
