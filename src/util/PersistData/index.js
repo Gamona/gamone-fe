@@ -18,3 +18,11 @@ export const getData = async key => {
     console.log(e);
   }
 };
+
+export const clearData = async key => {
+  try {
+    await localStorage.clear();
+  } catch (e) {
+    console.log(e);
+  }
+};
