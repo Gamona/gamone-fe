@@ -14,6 +14,7 @@ export default function Navbar() {
     const profiles = useSelector(state => state.profileReducer.profile);
     const dispatch = useDispatch();
 
+    console.log(profiles)
 
     const loginUserPage = (e) => {
         e.preventDefault()
@@ -99,9 +100,17 @@ export default function Navbar() {
                             <li className="text-white hover:text-indigo-200">
                                 <Link to='/'>Home</Link>
                             </li>
-                            <li className="text-white hover:text-indigo-200">
-                                <Link to='/pengacara'>Konsultasi</Link>
-                            </li>
+                            {profiles.isLogin && profiles.role === 'user' &&
+                              <li className="text-white hover:text-indigo-200">
+                                <Link to='/chats'>Chat</Link>
+                              </li>
+                            }
+                            {profiles.isLogin && profiles.role === 'lawyer' &&
+                              <li className="text-white hover:text-indigo-200">
+                                <Link to='/chats/lawyer'>Chat Pengacara</Link>
+                              </li>
+                            }
+
                             <li className="text-white hover:text-indigo-200">
                                 <Link to='/'>Go Premium</Link>
                             </li>

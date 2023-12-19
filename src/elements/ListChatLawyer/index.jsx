@@ -1,69 +1,65 @@
-import React, { useState, useEffect} from 'react'
-import {
-  getDatabase,
-  ref,
-  set,
-  onValue,
-  push,
-  child,
-  get,
-  update,
-} from "firebase/database";
-import { chatDate, chatTime } from '../../util';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
+import { getDatabase, ref, set, onValue, push, child, get, update  } from "firebase/database";
 import { DB } from '../../config';
+import { chatDate, chatTime } from '../../util';
+import Navbar from '../../components/Navbar';
 
-const ListChat = ({partnerId, senderId}) => {
 
-  let userId = senderId
-  let lawyerId = partnerId
+const ListChatLawyer = ({partnerId, senderId}) => {
 
+  let userId = partnerId
+  let lawyerId = senderId
+  
   const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(true);
   const [chats, setChats] = useState([]);
   const [chatContent, setChatContent] = useState("");
 
   useEffect(() => {
-    if (mounted) {
-      const chatIds = `${userId}_${lawyerId}`;
+    if(mounted) {
+      const chatIds = `${userId}_${lawyerId}`;   
       const urlChatting = `chatting/${chatIds}/allChat`;
       const refChatting = ref(DB, urlChatting);
 
       onValue(refChatting, (snapshot) => {
         const data = snapshot.val();
 
-        if(data) {
-          const dataSnapshot = data;
-          const AllDataChat = [];
-  
-          Object.keys(dataSnapshot).map((item) => {
-            const dataChat = dataSnapshot[item];
-            const newDataChat = [];
-  
-            Object.keys(dataChat).map((key) => {
-              newDataChat.push({
-                id: key,
-                data: dataChat[key],
-              });
-            });
-            AllDataChat.push({
-              date: item,
-              data: newDataChat,
+        const dataSnapshot = data;
+        const AllDataChat = [];
+
+        Object.keys(dataSnapshot).map(item => {
+          const dataChat = dataSnapshot[item];
+          const newDataChat = [];
+
+          Object.keys(dataChat).map(key => {
+            newDataChat.push({
+              id: key,
+              data: dataChat[key],
             });
           });
-  
-          setChats(AllDataChat);
-          setMounted(false);
-        }
+          AllDataChat.push({
+            date: item,
+            data: newDataChat,
+          });
+        });
+
+        setChats(AllDataChat);
+        setMounted(false);
+
       });
+      console.log(chats)
     }
-  }, [lawyerId, mounted, userId]);
+
+  }, [chats, mounted])
 
   const sendChat = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setMounted(true);
 
     const today = new Date();
     const chatIds = `${userId}_${lawyerId}`;
+    
 
     const urlChatting = `chatting/${chatIds}/allChat/${chatDate(today)}`;
     const urlMessagesUser = `messages/${userId}/${chatIds}`;
@@ -72,7 +68,7 @@ const ListChat = ({partnerId, senderId}) => {
     const refChatting = ref(DB, urlChatting);
 
     const data = {
-      sendBy: userId,
+      sendBy: lawyerId,
       chatDate: today.getTime(),
       chatTime: chatTime(today),
       chatContent: chatContent,
@@ -94,23 +90,23 @@ const ListChat = ({partnerId, senderId}) => {
 
     try {
       push(refChatting, data)
-        .then((res) => {
-          setChatContent("");
-          set(ref(DB, urlMessagesUser), dataHistoryChatUser);
-          set(ref(DB, urlMessagesLawyer), dataHistoryChatLawyer);
-          setMounted(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setMounted(false);
-        });
+      .then(res => {
+        setChatContent('');
+        set(ref(DB, urlMessagesUser ), dataHistoryChatUser)
+        set(ref(DB, urlMessagesLawyer ), dataHistoryChatLawyer)
+        setMounted(false);
+      })
+      .catch(err => {
+        console.log(err)
+        setMounted(false);
+      });
+      
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setMounted(false);
     }
   };
-
-
+  
   return (
     <section className="flex flex-col w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <header className="flex justify-between gap-4 items-center text-gray-900 dark:text-white p-4 lg:p-6 border-b border-gray-200 dark:border-gray-700">
@@ -127,13 +123,13 @@ const ListChat = ({partnerId, senderId}) => {
       </header>
 
       <section className="p-4 p:lg-6">
-        {chats.length > 0 && chats.map((cur) => (
+        {chats.map((cur) => (
           <div key={cur.date}>
             <h6 className="text-center my-4 text-gray-500 dark:text-gray-300">
               {cur.date}
             </h6>
             {cur.data.map((current) =>
-              current.data.sendBy == userId ? (
+              current.data.sendBy == lawyerId ? (
                 <div key={current.id} className="flex my-2 justify-end">
                   <div className="flex gap-3">
                     <div>
@@ -207,4 +203,4 @@ const ListChat = ({partnerId, senderId}) => {
   )
 }
 
-export default ListChat
+export default ListChatLawyer

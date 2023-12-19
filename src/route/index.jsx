@@ -26,6 +26,7 @@ export const PrivateRoutes = () => {
   return (
       <Routes>
           <Route path='/' element={<Homepage />} />
+          <Route path='/chats' element={<Chats />} />
           <Route path='/chats/lawyer' element={<ChatsLawyer />} />
           <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>

@@ -81,28 +81,28 @@ const Chats = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="grid lg:grid-cols-[300px_1fr] gap-5 w-full min-h-screen py-10">
           <aside className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md p-4 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-4">
-          {messages.length > 0 && messages.map((cur, i) => {
-                console.log(cur)
-                return (
-                  <div className="px-3 flex items-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer" key={i} onClick={(partnerId, senderId) => getChatScreen(cur.data[2].data, cur.data[3].data )}>
-                    <div>
-                      <img
-                        className="h-12 w-12 rounded-full"
-                        src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"
-                      />
-                    </div>
-                    <div className="ml-4 flex-1 border-b border-grey-lighter py-4">
-                      <div className="flex items-bottom justify-between">
-                        <p className="text-grey-darkest">{cur.data[2].data}</p>
-                        <p className="text-xs text-grey-darkest">{chatTime(new Date(cur.data[0].data))}</p>
-                      </div>
-                      <p className="text-grey-dark mt-1 text-sm">
-                        {cur.data[1].data}
-                      </p>
-                    </div>
+            { messages.length > 0 && messages.map((cur, i) => {
+              console.log(cur)
+              return (
+                <div className="px-3 flex items-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer" key={i} onClick={(partnerId, senderId) => getChatScreen(cur.data[2].data, cur.data[3].data )}>
+                  <div>
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"
+                    />
                   </div>
-                );
-              })}
+                  <div className="ml-4 flex-1 border-b border-grey-lighter py-4">
+                    <div className="flex items-bottom justify-between">
+                      <p className="text-grey-darkest">{cur.data[2].data}</p>
+                      <p className="text-xs text-grey-darkest">{chatTime(new Date(cur.data[0].data))}</p>
+                    </div>
+                    <p className="text-grey-dark mt-1 text-sm">
+                      {cur.data[1].data}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </aside>
           { shown && 
             <ListChat partnerId={partnerId} senderId={senderId}  />
