@@ -2,16 +2,20 @@
 import React, { useEffect, useState } from 'react'
 import { DB } from '../config';
 import { getDatabase, ref, set, onValue, push, child, get, update  } from "firebase/database";
+import { Routes, Route, useParams, useNavigate  } from 'react-router-dom';
 import { chatDate, chatTime, createUUID } from '../util';
 import Navbar from '../components/Navbar';
 
-let userId = '821197'
-let lawyerId = '3310111999'
+// let userId = '821197'
+// let lawyerId = '3310111999'
 const ChatsDetail = () => {
   const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(true);
   const [chats, setChats] = useState([]);
   const [chatContent, setChatContent] = useState("");
+
+  let { userId, lawyerId } = useParams();
+  console.log(userId, lawyerId)
 
   useEffect(() => {
     if(mounted) {
@@ -65,7 +69,7 @@ const ChatsDetail = () => {
     const refChatting = ref(DB, urlChatting);
 
     const data = {
-      sendBy: lawyerId,
+      sendBy: userId,
       chatDate: today.getTime(),
       chatTime: chatTime(today),
       chatContent: chatContent,

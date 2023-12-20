@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { DB } from "../config";
 import {
   getDatabase,
@@ -13,7 +14,6 @@ import {
 } from "firebase/database";
 import { chatDate, chatTime, createUUID } from "../util";
 
-let userId = "821197";
 
 import Navbar from "../components/Navbar";
 import ListChat from "../elements/ListChat";
@@ -24,6 +24,9 @@ const Chats = () => {
   const [shown, setShown] = useState(false);
   const [partnerId, setPartnerId] = useState('');
   const [senderId, setSenderId] = useState('');
+
+  const profiles = useSelector(state => state.profileReducer.profile);
+  let userId = profiles.userId;
 
   const getMessages = useCallback(() => {
     setMounted(true)
@@ -70,7 +73,6 @@ const Chats = () => {
       getMessages()
       setMounted(false)
     }
-    console.log(messages.length)
 
 
   }, [getMessages, messages, mounted])
@@ -82,7 +84,6 @@ const Chats = () => {
         <div className="grid lg:grid-cols-[300px_1fr] gap-5 w-full min-h-screen py-10">
           <aside className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md p-4 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-4">
             { messages.length > 0 && messages.map((cur, i) => {
-              console.log(cur)
               return (
                 <div className="px-3 flex items-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer" key={i} onClick={(partnerId, senderId) => getChatScreen(cur.data[2].data, cur.data[3].data )}>
                   <div>

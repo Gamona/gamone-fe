@@ -9,7 +9,6 @@ const Pengacara = () => {
         <div>
             <Navbar />
             <div className='max-w-5xl mx-auto'>
-                <Header />
                 <SelectPengacara />
             </div>
             <Footer />
