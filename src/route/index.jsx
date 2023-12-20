@@ -7,11 +7,12 @@ import RegisterPengacara from '../pages/RegisterPengacara';
 import LoginPengacara from '../pages/LoginPengacara';
 import Pengacara from '../pages/Pengacara';
 import ChatsLawyer from '../pages/ChatLawyer';
+import GetStarted from '../pages/GetStarted'
 
 export const PublicRoutes = () => {
   return (
       <Routes>
-          <Route path='/' element={<Homepage />} />
+          <Route path='/' element={<GetStarted />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='login/pengacara' element={<LoginPengacara />} />
