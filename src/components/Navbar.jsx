@@ -17,8 +17,6 @@ export default function Navbar() {
     const profiles = useSelector(state => state.profileReducer.profile);
     const dispatch = useDispatch();
 
-    console.log(profiles)
-
     const loginUserPage = (e) => {
         e.preventDefault()
         navigate('/login')
