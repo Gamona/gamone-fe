@@ -47,7 +47,8 @@ export default function Navbar() {
     };
 
     const submitPremium = async (e) => {
-
+        e.preventDefault()
+        clearDataByKey('profile')
         const value = {
           'userId': profiles.userId,
         }
@@ -62,12 +63,8 @@ export default function Navbar() {
           })
           
           if(response.data.responseCode === 200) {
-            // clearDataByKey('profile')
-            const profile = JSON.parse(localStorage.getItem('profile'));
-            Object.keys(response.data.data).forEach((key) => {
-              profile[key] = response.data.data[key];
-            });
-            storeData('profile', profile )
+            clearDataByKey('profile')
+            storeData('profile', response.data.data )
             dispatch({type: 'CLEAR_PROFILE'})
             dispatch({type: 'ADD_PROFILE', value: response.data.data })
             setLoad(false)
