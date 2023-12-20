@@ -1,9 +1,11 @@
 import {FaUser, FaLock} from 'react-icons/fa';
 import {useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
 import { Spin, message } from 'antd'
 import React from 'react';
+import { storeData } from '../../util';
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
@@ -14,6 +16,7 @@ const LoginForm = () => {
   const [emailUser, setEmailUser] = useState('');
   const [passwordUser, setPasswordUser] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegisterLinkClick = (e) => {
     e.preventDefault();
@@ -42,12 +45,20 @@ const LoginForm = () => {
 
       if(response.data.responseCode === 200) {
         setLoading(false)
-        localStorage.setItem("token", JSON.stringify(response.data.tokens.access.token))
+        storeData('token', JSON.stringify(response.data.tokens.access.token) )
+        storeData('profile', response.data.data )
+        dispatch({type: 'ADD_TOKEN', value: response.data.tokens })
+        dispatch({type: 'ADD_PROFILE', value: response.data.data })
         messageApi.open({
           type: 'success',
           content: 'Login Success',
         })
       }
+
+      setTimeout(() => {
+        navigate('/',{ replace: true })
+
+      }, '2000');
       
     } catch (error) {
       setLoading(false)

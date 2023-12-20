@@ -13,14 +13,14 @@ import Lawyers6 from '../../assets/images/lawyers6.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const TopLawyers = () => {
+const TopLawyers = ({dataLawyers}) => {
   const sliderRef = useRef(null);
 
   const settings = {
     // dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 2,
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
@@ -29,14 +29,14 @@ const TopLawyers = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -60,53 +60,19 @@ const TopLawyers = () => {
           ref={sliderRef}
           {...settings}
           className="w-full flex items-center px-[60px] md:px-0">
-          <Link to='/pengacara'>
-            <CardLawyers
-              name="Alexa Rachel"
-              image={Lawyers1}
-              hukum="Hukum Pidana"
-            />
-          </Link>
-
-          <Link to='/pengacara'>
-            <CardLawyers
-              name="Liu Yue Tian Park"
-              image={Lawyers2}
-              hukum="Hukum Bisnis"
-            />
-          </Link>
-
-          <Link to='/pengacara'>
-            <CardLawyers
-              name="Nairobi Putri Hayza"
-              image={Lawyers3}
-              hukum="Hukum Kontrak"
-            />
-          </Link>
-
-          <Link to='/pengacara'>
-            <CardLawyers
-              name="James Rivillia"
-              image={Lawyers4}
-              hukum="Hukum Properti"
-            />
-          </Link>
-
-          <Link to='/pengacara'>
-            <CardLawyers
-              name="John McParker Steve"
-              image={Lawyers5}
-              hukum="Hukum Bisnis"
-            />
-          </Link>
-
-          <Link to='/pengacara'>
-            <CardLawyers
-              name="Alexander Jannie"
-              image={Lawyers6}
-              hukum="Hukum Kontrak"
-            />
-          </Link>
+            {dataLawyers.map((cur, key) => {
+              return (
+                <>
+                  <CardLawyers
+                    name={cur.name}
+                    image={Lawyers1}
+                    hukum={cur.specialize.toString()}
+                    keys={`lawyer-${key}`}
+                  />
+                </>
+       
+              );
+            })}
         </Slider>
         <button
           className="absolute top-1/2 left-4 md:left-0 lg:-left-16 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
