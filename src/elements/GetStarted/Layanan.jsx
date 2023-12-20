@@ -5,7 +5,7 @@ const Layanan = () => {
       <h2 className="text-center text-4xl font-bold">
         Mogana Siap Bantu Cari Solusinya!
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 gap-10 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 gap-20 justify-items-center">
         <div className="p-4 rounded border border-slate-300 text-center max-w-sm aspect-square">
           <img
             src="src/assets/images/konsultasi.png"

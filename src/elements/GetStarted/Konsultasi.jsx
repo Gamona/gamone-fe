@@ -1,6 +1,6 @@
 import React from "react";
 import Icons from "../../assets/images/icons header.png";
-import CardHeader from "../../components/CardHeader";
+import CardHeader from "../../components/CardHeaderLogin";
 const Konsultasi = () => {
   return (
     <div

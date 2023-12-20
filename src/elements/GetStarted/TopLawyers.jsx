@@ -60,7 +60,7 @@ const TopLawyers = () => {
           ref={sliderRef}
           {...settings}
           className="w-full flex items-center px-[60px] md:px-0">
-          <Link to='/pengacara'>
+          <Link to='/login'>
             <CardLawyers
               name="Alexa Rachel"
               image={Lawyers1}
@@ -68,7 +68,7 @@ const TopLawyers = () => {
             />
           </Link>
 
-          <Link to='/pengacara'>
+          <Link to='/login'>
             <CardLawyers
               name="Liu Yue Tian Park"
               image={Lawyers2}
@@ -76,7 +76,7 @@ const TopLawyers = () => {
             />
           </Link>
 
-          <Link to='/pengacara'>
+          <Link to='/login'>
             <CardLawyers
               name="Nairobi Putri Hayza"
               image={Lawyers3}
@@ -84,7 +84,7 @@ const TopLawyers = () => {
             />
           </Link>
 
-          <Link to='/pengacara'>
+          <Link to='/login'>
             <CardLawyers
               name="James Rivillia"
               image={Lawyers4}
@@ -92,7 +92,7 @@ const TopLawyers = () => {
             />
           </Link>
 
-          <Link to='/pengacara'>
+          <Link to='/login'>
             <CardLawyers
               name="John McParker Steve"
               image={Lawyers5}
@@ -100,7 +100,7 @@ const TopLawyers = () => {
             />
           </Link>
 
-          <Link to='/pengacara'>
+          <Link to='/login'>
             <CardLawyers
               name="Alexander Jannie"
               image={Lawyers6}

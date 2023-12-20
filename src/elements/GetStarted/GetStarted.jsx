@@ -12,7 +12,7 @@ const GetStarted = () => {
           berkualitas tanpa dipungut biaya apa pun.
         </p>
       </div>
-      <Link to="/">
+      <Link to="/login">
         <button className="font-semibold text-slate-900 px-4 mt-4 rounded-[8px] py-2 bg-white whitespace-nowrap">
           Mulai Konsultasi
         </button>
