@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../components/Navbar'
-import Header from '../elements/homepage/Header'
+import Header from '../elements/GetStarted/Header'
 import Footer from '../components/Footer'
 import TopLawyers from '../elements/homepage/TopLawyers'
 import { getData } from '../util';
