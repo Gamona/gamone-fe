@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header
-      className="h-[120vh] bg-cover bg-top flex items-center relative px-5 md:px-20"
+      className="h-[120vh] bg-cover bg-top flex items-center relative px-5 md:px-20 m-2 lg:m-8 rounded-xl"
       style={{
         backgroundImage: "url('src/assets/images/header-background.gif')",
       }}
@@ -19,7 +19,7 @@ const Header = () => {
           Untungnya ada Mogana yang siap jadi pertolongan pertama dalam
           menghadapi masalah hukum.
         </p>
-        <Link to="/">
+        <Link to="/login">
           <button className="text-xl font-semibold text-[#fff] px-12 mt-4 rounded-[8px] py-2 bg-[#D6B50E]">
             Konsultasi Sekarang
           </button>
