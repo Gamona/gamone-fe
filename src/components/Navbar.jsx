@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../assets/logo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Popover } from 'antd';
-import { clearData } from "../util";
+import { clearData, clearDataByKey, storeData } from "../util";
+import axios from 'axios';
+const URL = import.meta.env.VITE_BE_ENDPOINT
 
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);
     const [open, setOpen] = useState(false);
+    const [load , setLoad] = useState(false)
 
     const navigate = useNavigate();
     const profiles = useSelector(state => state.profileReducer.profile);
@@ -42,6 +45,40 @@ export default function Navbar() {
     const handleOpenChange = (newOpen) => {
       setOpen(newOpen);
     };
+
+    const submitPremium = async (e) => {
+
+        const value = {
+          'userId': profiles.userId,
+        }
+       
+        try {
+          setLoad(true)
+          const response = await axios.post(`${URL}/v1/dashboard/premium`, value , {
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+          })
+          
+          if(response.data.responseCode === 200) {
+            // clearDataByKey('profile')
+            const profile = JSON.parse(localStorage.getItem('profile'));
+            Object.keys(response.data.data).forEach((key) => {
+              profile[key] = response.data.data[key];
+            });
+            storeData('profile', profile )
+            dispatch({type: 'CLEAR_PROFILE'})
+            dispatch({type: 'ADD_PROFILE', value: response.data.data })
+            setLoad(false)
+          }
+         
+        } catch (error) {
+          setLoad(false)
+          console.log(error.message)
+        }
+      }
+    
 
 
     return (
@@ -100,7 +137,7 @@ export default function Navbar() {
                             <li className="text-white hover:text-indigo-200">
                                 <Link to='/'>Home</Link>
                             </li>
-                            {profiles.isLogin && profiles.role === 'user' &&
+                            {profiles.isLogin && profiles.role === 'member' &&
                               <li className="text-white hover:text-indigo-200">
                                 <Link to='/chats'>Chat</Link>
                               </li>
@@ -111,9 +148,11 @@ export default function Navbar() {
                               </li>
                             }
 
-                            <li className="text-white hover:text-indigo-200">
-                                <Link to='/'>Go Premium</Link>
-                            </li>
+                            {profiles.isLogin && profiles.role === 'member' && !profiles.premium &&
+                                <Button type="primary" loading={load} onClick={(e) => submitPremium(e)}>
+                                    Go Premium
+                                </Button>
+                            }
                         </ul>
 
                         <div className="mt-3 space-y-2 md:hidden">

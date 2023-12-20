@@ -26,3 +26,11 @@ export const clearData = async key => {
     console.log(e);
   }
 };
+
+export const clearDataByKey = async key => {
+  try {
+    await localStorage.removeItem(key);
+  } catch (e) {
+    console.log(e.message);
+  }
+};

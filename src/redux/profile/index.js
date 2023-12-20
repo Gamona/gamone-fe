@@ -8,6 +8,7 @@ const initialState = {
     description: '',
     role: '',
     userId: '',
+    premium: '',
 
   }
 };
@@ -28,6 +29,7 @@ const profileReducer = (state = initialState, action) => {
           description: action.value.description,
           role: action.value.role,
           userId: action.value.userId,
+          premium: action.value.premium,
         },
       };
 
