@@ -1,19 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { DB } from '../config';
 import { getDatabase, ref, set, onValue, push, child, get, update  } from "firebase/database";
 import { chatDate, chatTime, createUUID } from '../util';
 import Navbar from '../components/Navbar';
 import ListChatLawyer from '../elements/ListChatLawyer';
 
-let userId = '821197'
-let lawyerId = '3310111999'
 const ChatsLawyer = () => {
   const [messages, setMessages] = useState([])
   const [mounted, setMounted] = useState(true);
   const [shown, setShown] = useState(false);
   const [partnerId, setPartnerId] = useState('');
   const [senderId, setSenderId] = useState('');
+
+  const profiles = useSelector(state => state.profileReducer.profile);
+  let lawyerId = profiles.userId
 
   const getMessages = useCallback(() => {
     setMounted(true)
