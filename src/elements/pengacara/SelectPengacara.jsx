@@ -91,7 +91,7 @@ const SelectPengacara = () => {
                   <CardPengacara
                     image={photo+cur.avatar}
                     name={cur.name}
-                    gender={cur.education}
+                    hukum={cur.education}
                     onClick={() => getChats(profiles.userId, cur._id, cur.name)}
                   />
                 </>

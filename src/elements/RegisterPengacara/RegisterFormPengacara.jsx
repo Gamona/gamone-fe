@@ -149,14 +149,10 @@ const RegisterFormPengacara = () => {
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Specialization</label>
                   <select ref={selectSpecialization} onChange={(e) => addSpecialization(e.target.value)} type="text" name="specialization" id="specialization" className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='Your speciality'>
                     <option disabled selected value="-">Select Your Specialization</option>
-                    <option value="Kepailitan">Kepailitan</option>
-                    <option value="Korporasi">Korporasi</option>
-                    <option value="Kekayaan Intelektual">Kekayaan Intelektual</option>
-                    <option value="Ketenagakerjaan">Ketenagakerjaan</option>
-                    <option value="Konstitusi">Konstitusi</option>
-                    <option value="Keluarga">Keluarga</option>
-                    <option value="Pajak">Pajak</option>
-                    <option value="Pembela Kriminal">Pembela Kriminal</option>
+                    <option value="Hukum Bisnis">Hukum Bisnis</option>
+                    <option value="Hukum Pidana">Hukum Pidana</option>
+                    <option value="Hukum Kontrak">Hukum Kontrak</option>
+                    <option value="Hukum Properti">Hukum Properti</option>
                   </select>
                   <div className="min-h-[40px] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 flex flex-wrap gap-2">
                     {specialization.map(spec => (
