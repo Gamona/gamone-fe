@@ -1,15 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { getDatabase, ref, set, onValue, push, child, get, update  } from "firebase/database";
 import { DB } from '../../config';
 import { chatDate, chatTime } from '../../util';
 import Navbar from '../../components/Navbar';
 
 
-const ListChatLawyer = ({partnerId, senderId}) => {
+const ListChatLawyer = ({partnerId, senderId, partnerName}) => {
 
   let userId = partnerId
   let lawyerId = senderId
+  const profiles = useSelector(state => state.profileReducer.profile);
   
   const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(true);
@@ -48,7 +50,6 @@ const ListChatLawyer = ({partnerId, senderId}) => {
         setMounted(false);
 
       });
-      console.log(chats)
     }
 
   }, [chats, mounted])
@@ -79,6 +80,8 @@ const ListChatLawyer = ({partnerId, senderId}) => {
       lastChatDate: today.getTime(),
       uidPartner: lawyerId,
       uidSender: userId,
+      partnerName: profiles.name,
+      senderName: partnerName,
     };
 
     const dataHistoryChatLawyer = {
@@ -86,6 +89,8 @@ const ListChatLawyer = ({partnerId, senderId}) => {
       lastChatDate: today.getTime(),
       uidPartner: userId,
       uidSender: lawyerId,
+      partnerName: partnerName,
+      senderName: profiles.name,
     };
 
     try {

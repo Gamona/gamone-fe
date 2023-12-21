@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getDatabase,
   ref,
@@ -12,10 +13,12 @@ import {
 import { chatDate, chatTime } from '../../util';
 import { DB } from '../../config';
 
-const ListChat = ({partnerId, senderId}) => {
+const ListChat = ({partnerId, senderId, partnerName}) => {
 
   let userId = senderId
   let lawyerId = partnerId
+  let lawyerName = partnerName
+  const profiles = useSelector(state => state.profileReducer.profile);
 
   const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(true);
@@ -83,6 +86,8 @@ const ListChat = ({partnerId, senderId}) => {
       lastChatDate: today.getTime(),
       uidPartner: lawyerId,
       uidSender: userId,
+      senderName: profiles.name,
+      partnerName: lawyerName,
     };
 
     const dataHistoryChatLawyer = {
@@ -90,6 +95,8 @@ const ListChat = ({partnerId, senderId}) => {
       lastChatDate: today.getTime(),
       uidPartner: userId,
       uidSender: lawyerId,
+      senderName: lawyerName,
+      partnerName: profiles.name,
     };
 
     try {
