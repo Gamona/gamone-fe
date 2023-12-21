@@ -74,9 +74,9 @@ const SelectPengacara = () => {
     }
   }, [getLawyerFull, getLawyerReguler, profiles.premium])
 
-  const getChats = (userId, partnerId) => {
+  const getChats = (userId, partnerId, lawyerName) => {
     console.log(userId, partnerId)
-    navigate(`/chats/${userId}/${partnerId}`)
+    navigate(`/chats/${userId}/${partnerId}/${lawyerName}`)
   }
   
 
@@ -96,7 +96,7 @@ const SelectPengacara = () => {
                     image={Pengacara1}
                     name={cur.name}
                     gender={cur.education}
-                    onClick={() => getChats(profiles.userId, cur._id)}
+                    onClick={() => getChats(profiles.userId, cur._id, cur.name)}
                   />
                 </>
        

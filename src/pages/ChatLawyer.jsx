@@ -13,6 +13,7 @@ const ChatsLawyer = () => {
   const [shown, setShown] = useState(false);
   const [partnerId, setPartnerId] = useState('');
   const [senderId, setSenderId] = useState('');
+  const [partnerName, setPartnerName] = useState('');
 
   const profiles = useSelector(state => state.profileReducer.profile);
   let lawyerId = profiles.userId
@@ -50,9 +51,10 @@ const ChatsLawyer = () => {
     // do something!
   }, []);
 
-  const getChatScreen = (partnerId, senderId) => {
+  const getChatScreen = (partnerId, senderId, partnerName) => {
     setPartnerId(partnerId)
     setSenderId(senderId)
+    setPartnerName(partnerName)
     setShown(true)
 
   }
@@ -75,7 +77,7 @@ const ChatsLawyer = () => {
           <aside className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md p-4 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-4">
             { messages.length > 0 && messages.map((cur, i) => {
               return (
-                <div className="px-3 flex items-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer" key={i} onClick={(partnerId, senderId) => getChatScreen(cur.data[2].data, cur.data[3].data )}>
+                <div className="px-3 flex items-center bg-yellow-400 hover:bg-yellow-500 cursor-pointer" key={i} onClick={(partnerId, senderId, partnerName) => getChatScreen(cur.data[4].data, cur.data[5].data, cur.data[2].data )}>
                   <div>
                     <img
                       className="h-12 w-12 rounded-full"
@@ -96,7 +98,7 @@ const ChatsLawyer = () => {
             })}
           </aside>
           {shown &&
-            <ListChatLawyer partnerId={partnerId} senderId={senderId}  />
+            <ListChatLawyer partnerId={partnerId} senderId={senderId} partnerName={partnerName}  />
           }
         </div>
       </div>

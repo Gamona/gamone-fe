@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { DB } from '../config';
 import { getDatabase, ref, set, onValue, push, child, get, update  } from "firebase/database";
 import { Routes, Route, useParams, useNavigate  } from 'react-router-dom';
@@ -14,8 +15,8 @@ const ChatsDetail = () => {
   const [chats, setChats] = useState([]);
   const [chatContent, setChatContent] = useState("");
 
-  let { userId, lawyerId } = useParams();
-  console.log(userId, lawyerId)
+  let { userId, lawyerId, lawyerName } = useParams();
+  const profiles = useSelector(state => state.profileReducer.profile);
 
   useEffect(() => {
     if(mounted) {
@@ -80,6 +81,8 @@ const ChatsDetail = () => {
       lastChatDate: today.getTime(),
       uidPartner: lawyerId,
       uidSender: userId,
+      senderName: profiles.name,
+      partnerName: lawyerName,
     };
 
     const dataHistoryChatLawyer = {
@@ -87,6 +90,8 @@ const ChatsDetail = () => {
       lastChatDate: today.getTime(),
       uidPartner: userId,
       uidSender: lawyerId,
+      senderName: lawyerName,
+      partnerName: profiles.name,
     };
 
     try {
