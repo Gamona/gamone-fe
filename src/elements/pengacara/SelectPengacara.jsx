@@ -2,10 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, useParams, useNavigate  } from 'react-router-dom';
 import CardTanggal from '../../components/CardTanggal';
 import Pengacara1 from '../../assets/images/lawyers.png';
-import Pengacara2 from '../../assets/images/lawyers2.png';
-import Pengacara3 from '../../assets/images/lawyers3.png';
-import Pengacara4 from '../../assets/images/lawyers4.png';
-import Pengacara5 from '../../assets/images/lawyers5.png';
 import CardPengacara from '../../components/CardPengacara';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -79,7 +75,7 @@ const SelectPengacara = () => {
     navigate(`/chats/${userId}/${partnerId}/${lawyerName}`)
   }
   
-
+  const photo = "http://localhost:3000/uploads/"
 
   return (
     <>
@@ -93,7 +89,7 @@ const SelectPengacara = () => {
               return (
                 <>
                   <CardPengacara
-                    image={Pengacara1}
+                    image={photo+cur.avatar}
                     name={cur.name}
                     gender={cur.education}
                     onClick={() => getChats(profiles.userId, cur._id, cur.name)}
