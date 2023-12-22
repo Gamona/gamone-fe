@@ -1,3 +1,8 @@
+import KonsulImg from '../../assets/images/konsultasi.png';
+import SecretImg from '../../assets/images/secret.png';
+import AdvokatImg from '../../assets/images/advokat.png';
+
+
 const Layanan = () => {
   return (
     <section className="py-20 container mx-auto mb-20">
@@ -8,7 +13,7 @@ const Layanan = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 gap-20 justify-items-center">
         <div className="p-4 rounded border border-slate-300 text-center max-w-sm aspect-square">
           <img
-            src="src/assets/images/konsultasi.png"
+            src={KonsulImg}
             alt="Konsultasi"
             className="w-full max-w-xs mx-auto"
           />
@@ -16,7 +21,7 @@ const Layanan = () => {
         </div>
         <div className="p-4 rounded border border-slate-300 text-center max-w-sm aspect-square">
           <img
-            src="src/assets/images/secret.png"
+            src={SecretImg}
             alt="Secret"
             className="w-full max-w-xs mx-auto"
           />
@@ -26,7 +31,7 @@ const Layanan = () => {
         </div>
         <div className="p-4 rounded border border-slate-300 text-center max-w-sm aspect-square">
           <img
-            src="src/assets/images/advokat.png"
+            src={AdvokatImg}
             alt="Advokat"
             className="w-full max-w-xs mx-auto"
           />

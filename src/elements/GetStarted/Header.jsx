@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import BackgroundImg from '../../assets/images/header-background.gif';
+import NeracaImg from '../../assets/images/neraca.png';
 
 const Header = () => {
   return (
@@ -27,7 +28,7 @@ const Header = () => {
         </Link>
       </div>
       <img
-        src="/src/assets/images/neraca.png"
+        src={NeracaImg}
         alt="Neraca"
         className="w-3/4 md:w-1/2 absolute right-0 bottom-20 md:bottom-auto"
       />
