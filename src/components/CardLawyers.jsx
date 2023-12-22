@@ -1,8 +1,6 @@
 import React from 'react'
-import { FaStar } from "react-icons/fa";
 
 const CardLawyers = ({image, name, hukum, specialize}) => {
-    console.log(specialize)
     const renderSpan = (specialize) => {
         return specialize.map((item, index) => {
             return (
