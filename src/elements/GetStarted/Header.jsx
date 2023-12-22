@@ -5,7 +5,7 @@ const Header = () => {
     <header
       className="h-[120vh] bg-cover bg-top flex items-center relative px-5 md:px-20 m-2 lg:m-8 rounded-xl"
       style={{
-        backgroundImage: "url('src/assets/images/header-background.gif')",
+        backgroundImage: "url('/src/assets/images/header-background.gif')",
       }}
     >
       <div className="max-w-[900px] -mt-[100%] md:-mt-20">
@@ -26,7 +26,7 @@ const Header = () => {
         </Link>
       </div>
       <img
-        src="src/assets/images/neraca.png"
+        src="/src/assets/images/neraca.png"
         alt="Neraca"
         className="w-3/4 md:w-1/2 absolute right-0 bottom-20 md:bottom-auto"
       />
