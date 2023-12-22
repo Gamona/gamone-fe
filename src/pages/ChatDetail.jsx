@@ -6,6 +6,7 @@ import { getDatabase, ref, set, onValue, push, child, get, update  } from "fireb
 import { Routes, Route, useParams, useNavigate  } from 'react-router-dom';
 import { chatDate, chatTime, createUUID } from '../util';
 import Navbar from '../components/Navbar';
+import AvatarImage from '../../src/assets/images/avatar.jpg';
 
 // let userId = '821197'
 // let lawyerId = '3310111999'
@@ -121,7 +122,7 @@ const ChatsDetail = () => {
             <header className="flex justify-between gap-4 items-center text-gray-900 dark:text-white p-4 lg:p-6 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3">
                 <img
-                  src="/images/avatar.jpg"
+                  src={AvatarImage}
                   className="w-10 lg:w-12 h-10 lg:h-12 rounded-full object-cover"
                 />
                 <div>
@@ -150,7 +151,7 @@ const ChatsDetail = () => {
                             </div>
                           </div>
                           <img
-                            src="/images/avatar.jpg"
+                            src={AvatarImage}
                             className="w-8 lg:w-10 h-8 lg:h-10 rounded-full object-cover"
                           />
                         </div>
@@ -159,7 +160,7 @@ const ChatsDetail = () => {
                       <div key={current.id} className="flex my-2">
                         <div className="flex gap-3">
                           <img
-                            src="/images/avatar.jpg"
+                            src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"
                             className="w-8 lg:w-10 h-8 lg:h-10 rounded-full object-cover"
                           />
                           <div>

@@ -11,6 +11,7 @@ import {
   update,
 } from "firebase/database";
 import { chatDate, chatTime } from '../../util';
+import AvatarImage from '../../assets/images/avatar.jpg';
 import { DB } from '../../config';
 
 const ListChat = ({partnerId, senderId, partnerName}) => {
@@ -123,7 +124,7 @@ const ListChat = ({partnerId, senderId, partnerName}) => {
       <header className="flex justify-between gap-4 items-center text-gray-900 dark:text-white p-4 lg:p-6 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <img
-            src="/images/avatar.jpg"
+            src={AvatarImage}
             className="w-10 lg:w-12 h-10 lg:h-12 rounded-full object-cover"
           />
           <div>
@@ -152,7 +153,7 @@ const ListChat = ({partnerId, senderId, partnerName}) => {
                       </div>
                     </div>
                     <img
-                      src="/images/avatar.jpg"
+                      src={AvatarImage}
                       className="w-8 lg:w-10 h-8 lg:h-10 rounded-full object-cover"
                     />
                   </div>
@@ -161,7 +162,7 @@ const ListChat = ({partnerId, senderId, partnerName}) => {
                 <div key={current.id} className="flex my-2">
                   <div className="flex gap-3">
                     <img
-                      src="/images/avatar.jpg"
+                      src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"
                       className="w-8 lg:w-10 h-8 lg:h-10 rounded-full object-cover"
                     />
                     <div>

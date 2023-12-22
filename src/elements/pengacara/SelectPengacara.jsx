@@ -12,10 +12,7 @@ const SelectPengacara = () => {
   const profiles = useSelector(state => state.profileReducer.profile);
   const navigate = useNavigate();
 
-  console.log(profiles)
-
   const [lawyers, setLawyers] = useState([])
-  const [load, setLoad] = useState(false)
   
   // console.log(category);
   const getLawyerReguler = useCallback( async () => {
@@ -89,7 +86,7 @@ const SelectPengacara = () => {
               return (
                 <>
                   <CardPengacara
-                    image={photo+cur.avatar}
+                    image={Pengacara1}
                     name={cur.name}
                     hukum={cur.education}
                     onClick={() => getChats(profiles.userId, cur._id, cur.name)}
