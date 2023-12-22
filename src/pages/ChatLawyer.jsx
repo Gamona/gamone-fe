@@ -6,6 +6,7 @@ import { getDatabase, ref, set, onValue, push, child, get, update  } from "fireb
 import { chatDate, chatTime, createUUID } from '../util';
 import Navbar from '../components/Navbar';
 import ListChatLawyer from '../elements/ListChatLawyer';
+import AvatarImage from '../../src/assets/images/avatar.jpg';
 
 const ChatsLawyer = () => {
   const [messages, setMessages] = useState([])
@@ -64,8 +65,6 @@ const ChatsLawyer = () => {
       getMessages()
       setMounted(false)
     }
-    console.log(messages.length)
-
 
   }, [getMessages, messages, mounted])
 
@@ -81,7 +80,7 @@ const ChatsLawyer = () => {
                   <div>
                     <img
                       className="h-12 w-12 rounded-full"
-                      src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"
+                      src={AvatarImage}
                     />
                   </div>
                   <div className="ml-4 flex-1 border-b border-grey-lighter py-4">
