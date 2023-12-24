@@ -8,7 +8,7 @@ import Navbar from '../../components/Navbar';
 import AvatarImage from '../../assets/images/avatar.jpg';
 
 
-const ListChatLawyer = ({partnerId, senderId, partnerName}) => {
+const ListChatLawyer = ({partnerId, senderId, partnerName, reload}) => {
 
   let userId = partnerId
   let lawyerId = senderId
@@ -20,40 +20,36 @@ const ListChatLawyer = ({partnerId, senderId, partnerName}) => {
   const [chatContent, setChatContent] = useState("");
 
   useEffect(() => {
-    if(mounted) {
-      const chatIds = `${userId}_${lawyerId}`;   
-      const urlChatting = `chatting/${chatIds}/allChat`;
-      const refChatting = ref(DB, urlChatting);
+    const chatIds = `${userId}_${lawyerId}`;   
+    const urlChatting = `chatting/${chatIds}/allChat`;
+    const refChatting = ref(DB, urlChatting);
 
-      onValue(refChatting, (snapshot) => {
-        const data = snapshot.val();
+    onValue(refChatting, (snapshot) => {
+      const data = snapshot.val();
 
-        const dataSnapshot = data;
-        const AllDataChat = [];
+      const dataSnapshot = data;
+      const AllDataChat = [];
 
-        Object.keys(dataSnapshot).map(item => {
-          const dataChat = dataSnapshot[item];
-          const newDataChat = [];
+      Object.keys(dataSnapshot).map(item => {
+        const dataChat = dataSnapshot[item];
+        const newDataChat = [];
 
-          Object.keys(dataChat).map(key => {
-            newDataChat.push({
-              id: key,
-              data: dataChat[key],
-            });
-          });
-          AllDataChat.push({
-            date: item,
-            data: newDataChat,
+        Object.keys(dataChat).map(key => {
+          newDataChat.push({
+            id: key,
+            data: dataChat[key],
           });
         });
-
-        setChats(AllDataChat);
-        setMounted(false);
-
+        AllDataChat.push({
+          date: item,
+          data: newDataChat,
+        });
       });
-    }
 
-  }, [chats, mounted])
+      setChats(AllDataChat);
+    });
+
+  }, [lawyerId, userId])
 
   const sendChat = async (e) => {
     e.preventDefault()
