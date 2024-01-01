@@ -73,6 +73,12 @@ export default function Navbar() {
           console.log(error.message)
         }
       }
+
+      const profilePage = (e) => {
+        e.preventDefault()
+        const ids = profiles.userId
+        navigate(`/profile/${ids}`)
+      }
     
 
 
@@ -159,10 +165,16 @@ export default function Navbar() {
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
  
-                {profiles.isLogin ? 
-                    <button onClick={(e) => logoutUserPage(e)} className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
-                        Sign Out
-                    </button> 
+                {profiles.isLogin ?
+                    <>
+                      <button onClick={(e) => profilePage(e)} className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
+                          Profile
+                      </button>
+                      <button onClick={(e) => logoutUserPage(e)} className="border-[#E7D49E] border text-[#fff] text-lg px-6 py-2 rounded-[10px]">
+                          Sign Out
+                      </button>                   
+                    </>
+
                     : 
                     <Popover
                       content={

@@ -9,6 +9,7 @@ import Pengacara from '../pages/Pengacara';
 import ChatsLawyer from '../pages/ChatLawyer';
 import GetStarted from '../pages/GetStarted'
 import ChatsDetail from '../pages/ChatDetail';
+import ProfileMember from '../pages/ProfileMember';
 
 export const PublicRoutes = () => {
   return (
@@ -27,6 +28,7 @@ export const PrivateRoutes = () => {
   return (
       <Routes>
           <Route path='/' element={<Homepage />} />
+          <Route path='/profile/:id' element={<ProfileMember />} />          
           <Route path='pengacara/:category' element={<Pengacara />} />
           <Route path='/chats/:userId/:lawyerId/:lawyerName' element={<ChatsDetail />} />
           <Route path='/chats' element={<Chats />} />
